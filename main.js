@@ -20,7 +20,7 @@ function addNewBook() {
     const inputBookTitle = document.getElementById("inputBookTitle").value;
     const inputBookAuthor = document.getElementById("inputBookAuthor").value;
     const inputBookYear = document.getElementById("inputBookYear").value;
-    const inputBookIsComplete = document.getElementById("inputBookIsComplete").value;
+    const inputBookIsComplete = document.getElementById("inputBookIsComplete").checked;
     const newBookData = {
         title: inputBookTitle,
         author: inputBookAuthor,
@@ -36,15 +36,17 @@ submitButton.addEventListener('click', function() {
     addNewBook();
 });
 
-function renderBookShelf(shelf) {
+function renderBookShelf(shelf, completion) {
     shelf.innerHTML = "";
 
     for (let book of bookData) {
         let row = document.createElement('article');
-        row.innerHTML += "<h3>" + book.title + "</h3>";
-        row.innerHTML += "<p>Penulis: " + book.author + "</p>";
-        row.innerHTML += "<p>Tahun: " + book.year + "</p>";
-        row.innerHTML += "<div>" + book.isComplate + "</div>";
+        if (book.isComplete === completion) {
+            row.innerHTML += "<h3>" + book.title + "</h3>";
+            row.innerHTML += "<p>Penulis: " + book.author + "</p>";
+            row.innerHTML += "<p>Tahun: " + book.year + "</p>";
+            row.innerHTML += "<div><button>pindahkan</button><button>hapus</button></div>";
+        }
 
         shelf.appendChild(row);
     }
@@ -54,6 +56,8 @@ window.addEventListener("load", function(){
     getBookList();
 
     const incompleteBookshelfList = document.querySelector("#incompleteBookshelfList");
+    const completeBookshelfList = document.querySelector("#completeBookshelfList");
 
-    renderBookShelf(incompleteBookshelfList);
+    renderBookShelf(incompleteBookshelfList, false);
+    renderBookShelf(completeBookshelfList, true);
 });
