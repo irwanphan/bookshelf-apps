@@ -157,5 +157,15 @@ main {
           padding: 1rem;
           border: 2px solid #345;
           border-bottom-width: 4px; }
+        .bookshelves section article .bookie small {
+          transform: rotate(-90deg);
+          display: block;
+          width: 48px;
+          overflow: hidden;
+          position: relative;
+          top: 20px;
+          left: -12px;
+          text-align: left;
+          white-space: nowrap; }
 
 /*# sourceMappingURL=style.css.map */

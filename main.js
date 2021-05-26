@@ -60,7 +60,9 @@ function renderBookShelf(shelf, bookData, completion) {
         if (book.isComplete === completion) {
             let row = document.createElement('article');
             row.innerHTML += `
-                <div class="bookie"></div>
+                <div class="bookie">
+                    <small>${ book.title }</small>
+                </div>
                 <div class="book-info">
                     <h3>${ book.title }</h3>
                     <p>Penulis: ${book.author}</p>
