@@ -30,7 +30,6 @@ function addNewBook() {
     bookData.unshift(newBookData); 
     localStorage.setItem(storageKey, JSON.stringify(bookData))
 }
-
 submitButton.addEventListener('click', function() {
     getBookList();
     addNewBook();
@@ -49,13 +48,6 @@ function renderBookShelf(shelf, bookData, completion) {
         shelf.appendChild(row);
     }
 }
-
-window.addEventListener("load", function() {
-    getBookList();
-
-    sortBookList(bookData);
-});
-
 function sortBookList(bookData) {
     const incompleteBookshelfList = document.querySelector("#incompleteBookshelfList");
     const completeBookshelfList = document.querySelector("#completeBookshelfList");
@@ -63,6 +55,11 @@ function sortBookList(bookData) {
     renderBookShelf(incompleteBookshelfList, bookData, false);
     renderBookShelf(completeBookshelfList, bookData, true);
 }
+
+window.addEventListener("load", function() {
+    getBookList();
+    sortBookList(bookData);
+});
 
 function moveBook(title) {
     let index = bookData.findIndex(element => element.title == title);
@@ -77,11 +74,14 @@ function moveBook(title) {
 }
 
 function removeBook(title) {
-    let index = bookData.findIndex(element => element.title == title);
-    bookData.splice(index, 1);
-    localStorage.setItem(storageKey, JSON.stringify(bookData));
-
-    sortBookList(bookData);
+    var confirmRemoveBook = confirm("Do you want to remove this book?");
+    if(confirmRemoveBook) {
+        let index = bookData.findIndex(element => element.title == title);
+        bookData.splice(index, 1);
+        localStorage.setItem(storageKey, JSON.stringify(bookData));
+    
+        sortBookList(bookData);
+    }
 }
 
 function searchBook()
