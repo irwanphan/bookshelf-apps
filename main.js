@@ -97,3 +97,13 @@ function searchBook()
     }
     sortBookList(searchResult);
 }
+
+function checkIsComplete() {
+    const inputBookIsComplete = document.getElementById("inputBookIsComplete").checked;
+    const addToShelf = document.querySelector("#bookSubmit span")
+    if (inputBookIsComplete === true) {
+        addToShelf.innerHTML = "Selesai dibaca"
+    } else {
+        addToShelf.innerHTML = "Belum selesai dibaca"
+    }
+}

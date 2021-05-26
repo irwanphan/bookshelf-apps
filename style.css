@@ -29,13 +29,12 @@ main {
     -webkit-border-radius: 1rem; }
     .bookforms section h2 {
       margin: 0 0 1rem; }
-  .bookforms form .input, .bookforms form .input_inline {
-    margin-bottom: 0.5rem; }
   .bookforms form label {
     min-width: 64px;
     display: inline-block; }
   .bookforms form input {
     padding: 0.375rem;
+    margin-bottom: 0.5rem;
     border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
     -webkit-border-radius: 0.5rem; }
@@ -51,7 +50,9 @@ main {
     -webkit-border-radius: 0.25rem;
     transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease; }
+    -webkit-transition: all 0.3s ease;
+    display: block;
+    width: 100%; }
     .bookforms form button:hover, .bookforms form button:focus {
       background-color: #5ed5ff; }
 
