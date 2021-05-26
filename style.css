@@ -151,6 +151,7 @@ main {
         border-width: 2px 4px 48px 2px;
         border-style: solid;
         border-color: #789;
+        margin-bottom: 0.25rem;
         border-radius: 4px;
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px; }
