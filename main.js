@@ -40,11 +40,18 @@ function renderBookShelf(shelf, bookData, completion) {
     for (let book of bookData) {
         if (book.isComplete === completion) {
             let row = document.createElement('article');
-            row.innerHTML += "<div class='bookie'></div>";
-            row.innerHTML += "<h3>" + book.title + "</h3>";
-            row.innerHTML += "<p>Penulis: " + book.author + "</p>";
-            row.innerHTML += "<p>Tahun: " + book.year + "</p>";
-            row.innerHTML += "<div class='action'><button onclick='moveBook(" + book.title + ")'>pindahkan</button><button  onclick='removeBook(" + book.title + ")'>hapus</button></div>";
+            row.innerHTML += `
+                <div class="bookie"></div>
+                <div class="bookInfo">
+                    <h3>${ book.title }</h3>
+                    <p>Penulis: ${book.author}</p>
+                    <p>Tahun: ${book.year}</p>
+                </div>`;
+            row.innerHTML += `
+                <div class="action">
+                    <button class="blue" onclick="moveBook(${book.title})">pindahkan</button>
+                    <button class="pink" onclick="removeBook(${book.title})">hapus</button>
+                </div>`;
             shelf.appendChild(row);
         }
     }

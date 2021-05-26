@@ -6,7 +6,6 @@ $browsers: '', '-moz-', '-webkit-'
 =borderradius ($radius: 50%)
 	@each $browser in $browsers
 		#{$browser}border-radius: $radius
-$green: #77fb77
 $blue: #87e0ff
 $pink: #ff80ab
 =button($color: #989898)
@@ -20,6 +19,11 @@ $pink: #ff80ab
 	+transitions(.3s)
 	&:hover, &:focus
 		background-color: darken($color, 8%)
+button
+	&.blue
+		+button($blue)
+	&.pink
+		+button($pink)
 
 *, *:before, *:after
 	box-sizing: border-box
@@ -74,15 +78,16 @@ main
 			font-size: 1rem
 			font-weight: 200
 		article
-			width: 32px
-			height: 108px
-			text-align: right
+			// width: 32px
+			// height: 108px
+			// text-align: right
 			overflow: hidden
 			display: inline-block
 			margin-right: 1rem
 			&:last-child
 				margin-right: 0
 			.bookie
+				cursor: pointer
 				width: 32px
 				height: 108px
 				border-width: 2px 4px 48px 2px 
