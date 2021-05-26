@@ -111,8 +111,7 @@ function removeBook( id ) {
     }
 }
 
-function searchBook()
-{
+function searchBook() {
     let searchPhrase = document.getElementById("searchBookTitle").value;
     let searchResult = [];
 
@@ -134,8 +133,7 @@ function checkIsComplete() {
     }
 }
 
-function editBook(id)
-{
+function editBook(id) {
     let index = bookData.findIndex(element => element.id == id);
     document.getElementById("inputBookTitle").value = bookData[index].title;
     document.getElementById("inputBookAuthor").value = bookData[index].author;
@@ -144,8 +142,7 @@ function editBook(id)
     selectedId = id;
 }
 
-function reset()
-{
+function reset() {
     document.getElementById("inputBookTitle").value = "";
     document.getElementById("inputBookAuthor").value = "";
     document.getElementById("inputBookYear").value = "2021";

@@ -32,6 +32,24 @@ html, body
 	padding: 0
 	margin: 0
 
+label.toggler
+	cursor: pointer
+	background-color: #fff
+	font-size: 1.5rem
+	width: 48px
+	height: 48px
+	line-height: 48px
+	text-align: center
+	border: 1px solid #345
+	border-bottom-width: 2px
+	+borderradius(50%)
+	position: fixed
+	left: 1rem
+	top: 1rem
+	display: none
+#toggler
+	display: none
+
 header
 	h1
 		font-weight: 200
@@ -39,9 +57,9 @@ header
 main
 	padding: 1rem
 .bookforms
-	position: absolute
+	position: fixed
 	left: 1rem
-	top: 10rem
+	top: 8rem
 	background-color: #fff
 	section
 		padding: 1rem
@@ -66,7 +84,18 @@ main
 			display: block
 			width: 100%
 			margin-bottom: .375rem
-
+@media (max-width: 1024px)
+	.bookforms
+		top: 5rem
+		left: -40rem
+		+transitions(.3s)
+	#toggler
+		&:checked
+			~
+				main .bookforms
+					left: 1rem
+	label.toggler
+		display: block
 .bookshelves
 	display: block
 	section
@@ -82,7 +111,7 @@ main
 			// height: 108px
 			// text-align: right
 			display: inline-block
-			margin-right: 1rem
+			margin-right: .625rem
 			&:last-child
 				margin-right: 0
 			.book-info
