@@ -94,5 +94,5 @@ function searchBook()
             searchResult.unshift(book)
         }
     }
-    console.log(searchResult);
+    sortBookList();
 }
