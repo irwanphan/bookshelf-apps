@@ -81,11 +81,15 @@ main
 			// width: 32px
 			// height: 108px
 			// text-align: right
-			overflow: hidden
 			display: inline-block
 			margin-right: 1rem
 			&:last-child
 				margin-right: 0
+			.book-info
+				height: 0
+				overflow: hidden
+				&:hover, &:focus
+					height: auto
 			.bookie
 				cursor: pointer
 				width: 32px
@@ -94,4 +98,8 @@ main
 				border-style: solid
 				border-color: #789
 				+borderradius(4px)
+				&:hover, &:focus
+					~
+						.book-info
+							height: auto
 

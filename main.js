@@ -42,15 +42,14 @@ function renderBookShelf(shelf, bookData, completion) {
             let row = document.createElement('article');
             row.innerHTML += `
                 <div class="bookie"></div>
-                <div class="bookInfo">
+                <div class="book-info">
                     <h3>${ book.title }</h3>
                     <p>Penulis: ${book.author}</p>
                     <p>Tahun: ${book.year}</p>
-                </div>`;
-            row.innerHTML += `
-                <div class="action">
-                    <button class="blue" onclick="moveBook(${book.title})">pindahkan</button>
-                    <button class="pink" onclick="removeBook(${book.title})">hapus</button>
+                    <div class="action">
+                        <button class="blue" onclick="moveBook(${book.title})">pindahkan</button>
+                        <button class="pink" onclick="removeBook(${book.title})">hapus</button>
+                    </div>
                 </div>`;
             shelf.appendChild(row);
         }

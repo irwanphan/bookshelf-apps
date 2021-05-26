@@ -98,11 +98,15 @@ main {
       font-size: 1rem;
       font-weight: 200; }
     .bookshelves section article {
-      overflow: hidden;
       display: inline-block;
       margin-right: 1rem; }
       .bookshelves section article:last-child {
         margin-right: 0; }
+      .bookshelves section article .book-info {
+        height: 0;
+        overflow: hidden; }
+        .bookshelves section article .book-info:hover, .bookshelves section article .book-info:focus {
+          height: auto; }
       .bookshelves section article .bookie {
         cursor: pointer;
         width: 32px;
@@ -113,5 +117,7 @@ main {
         border-radius: 4px;
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px; }
+        .bookshelves section article .bookie:hover ~ .book-info, .bookshelves section article .bookie:focus ~ .book-info {
+          height: auto; }
 
 /*# sourceMappingURL=style.css.map */
