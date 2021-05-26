@@ -36,7 +36,7 @@ submitButton.addEventListener('click', function() {
     addNewBook();
 });
 
-function renderBookShelf(shelf, completion) {
+function renderBookShelf(shelf, bookData, completion) {
     shelf.innerHTML = "";
     for (let book of bookData) {
         let row = document.createElement('article');
@@ -44,41 +44,55 @@ function renderBookShelf(shelf, completion) {
             row.innerHTML += "<h3>" + book.title + "</h3>";
             row.innerHTML += "<p>Penulis: " + book.author + "</p>";
             row.innerHTML += "<p>Tahun: " + book.year + "</p>";
-            row.innerHTML += "<div class='action' onclick='moveBookStatus(" + book.title + ")'><button>pindahkan</button><button>hapus</button></div>";
+            row.innerHTML += "<div class='action'><button onclick='moveBook(" + book.title + ")'>pindahkan</button><button  onclick='removeBook(" + book.title + ")'>hapus</button></div>";
         }
         shelf.appendChild(row);
     }
 }
 
-window.addEventListener("load", function(){
+window.addEventListener("load", function() {
     getBookList();
 
-    classifyBookShelf();
+    sortBookList();
 });
 
-function classifyBookShelf()
-{
+function sortBookList() {
     const incompleteBookshelfList = document.querySelector("#incompleteBookshelfList");
     const completeBookshelfList = document.querySelector("#completeBookshelfList");
 
-    renderBookShelf(incompleteBookshelfList, false);
-    renderBookShelf(completeBookshelfList, true);
+    renderBookShelf(incompleteBookshelfList, bookData, false);
+    renderBookShelf(completeBookshelfList, bookData, true);
 }
 
-function moveBookStatus( title )
-{
-    // var index = bookData.findIndex( ( element, index ) => {
-    //     if( element.title == title )
-    //     {
-    //         return true;
-    //     }
-    // });
+function moveBook(title) {
     let index = bookData.findIndex(element => element.title == title);
     if (bookData[index].isComplete == true) {
         bookData[index].isComplete = false;
     } else if (bookData[index].isComplete == false) {
         bookData[index].isComplete = true;
     }
-    
-    classifyBookShelf();
+    localStorage.setItem(storageKey, JSON.stringify(bookData));
+
+    sortBookList();
+}
+
+function removeBook(title) {
+    let index = bookData.findIndex(element => element.title == title);
+    bookData.splice(index, 1);
+    localStorage.setItem(storageKey, JSON.stringify(bookData));
+
+    sortBookList();
+}
+
+function searchBook()
+{
+    let searchPhrase = document.getElementById("searchBookTitle").value;
+    let searchResult = [];
+
+    for (let book of bookData) {
+        if (book.title.includes(searchPhrase)) {
+            searchResult.unshift(book)
+        }
+    }
+    console.log(searchResult);
 }
