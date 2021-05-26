@@ -16,7 +16,7 @@ button.blue {
 button.pink {
   padding: 0.375rem;
   display: inline-block;
-  background-color: #ff80ab;
+  background-color: #ffa9de;
   border: 1px solid #000;
   border-right-width: 2px;
   border-bottom-width: 3px;
@@ -27,7 +27,7 @@ button.pink {
   -moz-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease; }
   button.pink:hover, button.pink:focus {
-    background-color: #ff5790; }
+    background-color: #ff80ce; }
 
 *, *:before, *:after {
   box-sizing: border-box; }
@@ -70,22 +70,9 @@ main {
     -moz-border-radius: 0.5rem;
     -webkit-border-radius: 0.5rem; }
   .bookforms form button {
-    padding: 0.375rem;
-    display: inline-block;
-    background-color: #87e0ff;
-    border: 1px solid #000;
-    border-right-width: 2px;
-    border-bottom-width: 3px;
-    border-radius: 0.25rem;
-    -moz-border-radius: 0.25rem;
-    -webkit-border-radius: 0.25rem;
-    transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
     display: block;
-    width: 100%; }
-    .bookforms form button:hover, .bookforms form button:focus {
-      background-color: #5ed5ff; }
+    width: 100%;
+    margin-bottom: 0.375rem; }
 
 .bookshelves {
   display: block; }
@@ -104,9 +91,23 @@ main {
         margin-right: 0; }
       .bookshelves section article .book-info {
         height: 0;
-        overflow: hidden; }
+        position: absolute;
+        overflow: hidden;
+        text-align: left;
+        background-color: #fff;
+        padding: 0;
+        border: 0;
+        border-bottom-width: 2px;
+        border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -webkit-border-radius: 1rem; }
         .bookshelves section article .book-info:hover, .bookshelves section article .book-info:focus {
-          height: auto; }
+          border: 2px solid #345;
+          border-bottom-width: 4px;
+          height: auto;
+          padding: 1rem; }
+        .bookshelves section article .book-info h3, .bookshelves section article .book-info p {
+          margin: 0 0 0.375rem; }
       .bookshelves section article .bookie {
         cursor: pointer;
         width: 32px;
@@ -118,6 +119,9 @@ main {
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px; }
         .bookshelves section article .bookie:hover ~ .book-info, .bookshelves section article .bookie:focus ~ .book-info {
-          height: auto; }
+          height: auto;
+          padding: 1rem;
+          border: 2px solid #345;
+          border-bottom-width: 4px; }
 
 /*# sourceMappingURL=style.css.map */

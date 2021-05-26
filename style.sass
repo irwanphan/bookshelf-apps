@@ -7,7 +7,7 @@ $browsers: '', '-moz-', '-webkit-'
 	@each $browser in $browsers
 		#{$browser}border-radius: $radius
 $blue: #87e0ff
-$pink: #ff80ab
+$pink: #ffa9de
 =button($color: #989898)
 	padding: .375rem
 	display: inline-block
@@ -63,9 +63,9 @@ main
 			margin-bottom: .5rem
 			+borderradius(.5rem)
 		button
-			+button($blue)
 			display: block
 			width: 100%
+			margin-bottom: .375rem
 
 .bookshelves
 	display: block
@@ -87,9 +87,21 @@ main
 				margin-right: 0
 			.book-info
 				height: 0
+				position: absolute
 				overflow: hidden
+				text-align: left
+				background-color: #fff
+				padding: 0
+				border: 0
+				border-bottom-width: 2px
+				+borderradius(1rem)
 				&:hover, &:focus
+					border: 2px solid #345
+					border-bottom-width: 4px
 					height: auto
+					padding: 1rem
+				h3, p
+					margin: 0 0 .375rem
 			.bookie
 				cursor: pointer
 				width: 32px
@@ -102,4 +114,7 @@ main
 					~
 						.book-info
 							height: auto
-
+							padding: 1rem
+							border: 2px solid #345
+							border-bottom-width: 4px
+					

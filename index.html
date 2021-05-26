@@ -38,7 +38,8 @@
                     <label for="inputBookIsComplete">Selesai dibaca</label>
                     <input id="inputBookIsComplete" type="checkbox" onchange="checkIsComplete()">
                 </div>
-                <button id="bookSubmit" type="submit">Masukkan ke rak <span>Belum selesai dibaca</span></button>
+                <button class="blue" id="bookSubmit" type="submit">Masukkan ke rak <span>Belum selesai dibaca</span></button>
+                <button type="button" class="pink" onclick="reset()">Bersihkan / Batal</button>
             </form>
         </section>
     
@@ -47,7 +48,7 @@
             <form id="searchBook">
                 <label for="searchBookTitle">Judul</label>
                 <input id="searchBookTitle" type="text">
-                <button id="searchSubmit" type="button" onclick="searchBook()">Cari</button>
+                <button class="blue" id="searchSubmit" type="button" onclick="searchBook()">Cari</button>
             </form>
         </section>
     </div>

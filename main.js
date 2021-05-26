@@ -1,6 +1,8 @@
 const storageKey = "bookEntry";
 const submitButton = document.getElementById("bookSubmit");
 
+var selectedId = "";
+
 function checkForStorage() {
     return typeof(Storage) !== "undefined"
 }
@@ -16,23 +18,40 @@ function getBookList() {
     }
 }
 
-function addNewBook() {
+function addNewBook() {    
     const inputBookTitle = document.getElementById("inputBookTitle").value;
     const inputBookAuthor = document.getElementById("inputBookAuthor").value;
     const inputBookYear = document.getElementById("inputBookYear").value;
     const inputBookIsComplete = document.getElementById("inputBookIsComplete").checked;
-    const newBookData = {
-        title: inputBookTitle,
-        author: inputBookAuthor,
-        year: inputBookYear,
-        isComplete: inputBookIsComplete,
+
+    if (selectedId == ""){
+        const { length } = bookData;
+        const id = length + 1;
+        const newBookData = {
+            id: id,
+            title: inputBookTitle,
+            author: inputBookAuthor,
+            year: inputBookYear,
+            isComplete: inputBookIsComplete,
+        }
+        bookData.unshift(newBookData); 
+        localStorage.setItem(storageKey, JSON.stringify(bookData));
+    } else {
+        let selectedIndex = bookData.findIndex(element => element.id == selectedId);
+        bookData[selectedIndex].title = inputBookTitle;
+        bookData[selectedIndex].author = inputBookAuthor;
+        bookData[selectedIndex].year = inputBookYear;
+        bookData[selectedIndex].isComplete = inputBookIsComplete;
+        localStorage.setItem(storageKey, JSON.stringify(bookData));
     }
-    bookData.unshift(newBookData); 
-    localStorage.setItem(storageKey, JSON.stringify(bookData))
+
+    reset();
 }
 submitButton.addEventListener('click', function() {
-    getBookList();
     addNewBook();
+    getBookList();
+
+    sortBookList(bookData)
 });
 
 function renderBookShelf(shelf, bookData, completion) {
@@ -47,8 +66,9 @@ function renderBookShelf(shelf, bookData, completion) {
                     <p>Penulis: ${book.author}</p>
                     <p>Tahun: ${book.year}</p>
                     <div class="action">
-                        <button class="blue" onclick="moveBook(${book.title})">pindahkan</button>
-                        <button class="pink" onclick="removeBook(${book.title})">hapus</button>
+                        <button class="blue" onclick="editBook(${book.id})">edit</button>
+                        <button class="blue" onclick="moveBook(${book.id})">pindahkan</button>
+                        <button class="pink" onclick="removeBook(${book.id})">hapus</button>
                     </div>
                 </div>`;
             shelf.appendChild(row);
@@ -68,8 +88,8 @@ window.addEventListener("load", function() {
     sortBookList(bookData);
 });
 
-function moveBook(title) {
-    let index = bookData.findIndex(element => element.title == title);
+function moveBook(id) {
+    let index = bookData.findIndex(element => element.id == id);
     if (bookData[index].isComplete == true) {
         bookData[index].isComplete = false;
     } else if (bookData[index].isComplete == false) {
@@ -80,10 +100,10 @@ function moveBook(title) {
     sortBookList(bookData);
 }
 
-function removeBook(title) {
+function removeBook( id ) {
     var confirmRemoveBook = confirm("Do you want to remove this book?");
     if(confirmRemoveBook) {
-        let index = bookData.findIndex(element => element.title == title);
+        let index = bookData.findIndex(element => element.id == id);
         bookData.splice(index, 1);
         localStorage.setItem(storageKey, JSON.stringify(bookData));
     
@@ -112,4 +132,23 @@ function checkIsComplete() {
     } else {
         addToShelf.innerHTML = "Belum selesai dibaca"
     }
+}
+
+function editBook(id)
+{
+    let index = bookData.findIndex(element => element.id == id);
+    document.getElementById("inputBookTitle").value = bookData[index].title;
+    document.getElementById("inputBookAuthor").value = bookData[index].author;
+    document.getElementById("inputBookYear").value = bookData[index].year;
+    document.getElementById("inputBookIsComplete").checked = bookData[index].isComplete;
+    selectedId = id;
+}
+
+function reset()
+{
+    document.getElementById("inputBookTitle").value = "";
+    document.getElementById("inputBookAuthor").value = "";
+    document.getElementById("inputBookYear").value = "2021";
+    document.getElementById("inputBookIsComplete").checked = false;
+    selectedId = "";
 }
