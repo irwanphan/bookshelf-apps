@@ -53,10 +53,10 @@ function renderBookShelf(shelf, bookData, completion) {
 window.addEventListener("load", function() {
     getBookList();
 
-    sortBookList();
+    sortBookList(bookData);
 });
 
-function sortBookList() {
+function sortBookList(bookData) {
     const incompleteBookshelfList = document.querySelector("#incompleteBookshelfList");
     const completeBookshelfList = document.querySelector("#completeBookshelfList");
 
@@ -73,7 +73,7 @@ function moveBook(title) {
     }
     localStorage.setItem(storageKey, JSON.stringify(bookData));
 
-    sortBookList();
+    sortBookList(bookData);
 }
 
 function removeBook(title) {
@@ -81,7 +81,7 @@ function removeBook(title) {
     bookData.splice(index, 1);
     localStorage.setItem(storageKey, JSON.stringify(bookData));
 
-    sortBookList();
+    sortBookList(bookData);
 }
 
 function searchBook()
@@ -94,5 +94,5 @@ function searchBook()
             searchResult.unshift(book)
         }
     }
-    sortBookList();
+    sortBookList(searchResult);
 }
