@@ -38,14 +38,15 @@ submitButton.addEventListener('click', function() {
 function renderBookShelf(shelf, bookData, completion) {
     shelf.innerHTML = "";
     for (let book of bookData) {
-        let row = document.createElement('article');
         if (book.isComplete === completion) {
+            let row = document.createElement('article');
+            row.innerHTML += "<div class='bookie'></div>";
             row.innerHTML += "<h3>" + book.title + "</h3>";
             row.innerHTML += "<p>Penulis: " + book.author + "</p>";
             row.innerHTML += "<p>Tahun: " + book.year + "</p>";
             row.innerHTML += "<div class='action'><button onclick='moveBook(" + book.title + ")'>pindahkan</button><button  onclick='removeBook(" + book.title + ")'>hapus</button></div>";
+            shelf.appendChild(row);
         }
-        shelf.appendChild(row);
     }
 }
 function sortBookList(bookData) {
